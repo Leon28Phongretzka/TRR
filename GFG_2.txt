@@ -1,0 +1,16 @@
+// printing the 2D vector
+    // fora(i,v)
+    // {
+    //     for(auto j:i)
+    //     {
+    //         cout<<j<<" ";
+    //     }
+    //     cout<<endl;
+    // }
+    // printing v1
+    // fora(i,v1) cout << i << " ";
+
+3 4
+4 5 9 3
+1 12 18 19
+5 6 7 20
