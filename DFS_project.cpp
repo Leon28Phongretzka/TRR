@@ -53,10 +53,12 @@ class Graph
 		bool hasCycle(int v);
 		void ConnectedComponents(int n);
 };
+// Add Edge
 void Graph::addEdge(int v, int w)
 {
 	adj[v].push_back(w);
 }
+// DFS
 void Graph::DFS(int v)
 {
 	visited[v] = true;
@@ -66,6 +68,7 @@ void Graph::DFS(int v)
 		if (!visited[*i])
 			DFS(*i);
 }
+// Check Graph Cycle
 bool Graph::hasCycle(int v)
 {
 	visited[v] = true;
@@ -77,6 +80,7 @@ bool Graph::hasCycle(int v)
 			return true;
 	return false;
 }
+// Check number of Connected Components
 void Graph::ConnectedComponents(int n)
 {
 	int ans=0;
