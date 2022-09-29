@@ -116,7 +116,5 @@ int main()
     }
 	int k; cin >> k; g.DFS(k); cout << endl;
 	cout << g.hasCycle(k) << endl;
-	g.Return();
-	g.ConnectedComponents(n);
+	g.Return(); g.ConnectedComponents(n);
 }
-
