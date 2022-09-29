@@ -18,6 +18,9 @@ class Graph
 		// DFS traversal of the vertices
 		// reachable from v
 		void DFS(int v);
+
+		// check if the graph is cycle
+		bool hasCycle(int v);
 	};
 void Graph::addEdge(int v, int w)
 {
@@ -37,6 +40,21 @@ void Graph::DFS(int v)
 		if (!visited[*i])
 			DFS(*i);
 }
+bool Graph::hasCycle(int v)
+{
+	// Mark the current node as visited and
+	// print it
+	visited[v] = true;
+	// Recur for all the vertices adjacent
+	// to this vertex
+	list<int>::iterator i;
+	for (i = adj[v].begin(); i != adj[v].end(); ++i)
+		if (!visited[*i])
+			hasCycle(*i);
+		else
+			return true;
+	return false;
+}
 // Driver code
 int main()
 {
@@ -52,5 +70,7 @@ int main()
     }
 	int k; cin >> k;
 	g.DFS(k);
+	cout << endl;
+	cout << g.hasCycle(k) << endl;
 }
 
