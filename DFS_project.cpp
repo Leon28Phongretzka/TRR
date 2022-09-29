@@ -48,11 +48,15 @@ class Graph
 	public:
 		map<int, bool> visited;
 		map<int, list<int>> adj;
+		int parent[1001];
 		void addEdge(int v, int w);
 		void DFS(int v);
 		bool hasCycle(int v);
 		void ConnectedComponents(int n);
+		void DFS_path(int u);
+		void Path(int u, int v);
 		void Return();
+		void SetParent();
 };
 // Add Edge
 void Graph::addEdge(int v, int w)
@@ -96,12 +100,54 @@ void Graph::ConnectedComponents(int n)
 	}
 	cout << ans << endl;
 }
+// DFS_path
+void Graph::DFS_path(int u)
+{
+	visited[u] = true;
+	for(auto v : adj[u])
+	{
+		if(!visited[v])
+		{
+			parent[v]=u;
+			DFS_path(v);
+		}
+	}
+}
+// Path
+void Graph::Path(int u, int v)
+{
+	memset(parent, 0, sizeof(parent));
+	DFS_path(u);
+	if(!visited[v])
+	{
+		cout << "No Path" << endl;
+		return;
+	}
+	else
+	{
+		vi path;
+		while(v!=u)
+		{
+			path.pb(v);
+			v=parent[v];
+		}
+		path.pb(u);
+		reverse(path.begin(), path.end());
+		fora(i, path)
+			cout << i << " ";
+	}
+}
 // Return
 void Graph::Return()
 {
 	// Return visited bool to false
 	for (auto i = visited.begin(); i != visited.end(); ++i)
 		i->second = false;
+}
+// Set parent array to 0
+void Graph::SetParent()
+{
+	memset(parent, 0, sizeof(parent));
 }
 int main()
 {
@@ -117,4 +163,5 @@ int main()
 	int k; cin >> k; g.DFS(k); cout << endl;
 	cout << g.hasCycle(k) << endl;
 	g.Return(); g.ConnectedComponents(n);
+	g.Return(); g.SetParent(); int u,v; cin >> u >> v; g.Path(u,v);
 }
