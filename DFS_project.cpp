@@ -5,19 +5,20 @@ using namespace std;
 
 // Graph class represents a directed graph
 // using adjacency list representation
-class Graph {
-public:
-	map<int, bool> visited;
-	map<int, list<int> > adj;
+class Graph 
+{
+	public:
+		map<int, bool> visited;
 
-	// function to add an edge to graph
-	void addEdge(int v, int w);
+		map<int, list<int> > adj;
 
-	// DFS traversal of the vertices
-	// reachable from v
-	void DFS(int v);
-};
+		// function to add an edge to graph
+		void addEdge(int v, int w);
 
+		// DFS traversal of the vertices
+		// reachable from v
+		void DFS(int v);
+	};
 void Graph::addEdge(int v, int w)
 {
 	adj[v].push_back(w); // Add w to v’s list.
@@ -29,7 +30,6 @@ void Graph::DFS(int v)
 	// print it
 	visited[v] = true;
 	cout << v << " ";
-
 	// Recur for all the vertices adjacent
 	// to this vertex
 	list<int>::iterator i;
@@ -37,24 +37,20 @@ void Graph::DFS(int v)
 		if (!visited[*i])
 			DFS(*i);
 }
-
 // Driver code
 int main()
 {
 	// Create a graph given in the above diagram
 	Graph g;
-	g.addEdge(0, 1);
-	g.addEdge(0, 2);
-	g.addEdge(1, 2);
-	g.addEdge(2, 0);
-	g.addEdge(2, 3);
-	g.addEdge(3, 3);
-
-	cout << "Following is Depth First Traversal"
-			" (starting from vertex 2) \n";
-	g.DFS(2);
-
-	return 0;
+	int n,m;
+	cin >> n >> m;
+    for(int i=0; i<m; i++)
+    {
+        int x,y; cin >> x >> y;
+        g.addEdge(x,y);
+		g.addEdge(y,x);
+    }
+	int k; cin >> k;
+	g.DFS(k);
 }
 
-// improved by Vishnudev C

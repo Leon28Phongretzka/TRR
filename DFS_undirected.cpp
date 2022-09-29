@@ -67,7 +67,6 @@ void inp()
     }
     memset(visited, false, sizeof(visited));
 }
-
 void dfs(int u)
 {
     cout << u << " ";
