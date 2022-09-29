@@ -47,11 +47,11 @@ class Graph
 {
 	public:
 		map<int, bool> visited;
-		map<int, list<int> > adj;
+		map<int, list<int>> adj;
 		void addEdge(int v, int w);
 		void DFS(int v);
 		bool hasCycle(int v);
-		void ConnectedComponents();
+		void ConnectedComponents(int n);
 };
 void Graph::addEdge(int v, int w)
 {
@@ -77,16 +77,15 @@ bool Graph::hasCycle(int v)
 			return true;
 	return false;
 }
-void Graph::ConnectedComponents()
+void Graph::ConnectedComponents(int n)
 {
 	int ans=0;
-	for (auto i = adj.begin(); i != adj.end(); ++i)
+	for (auto i = 1; i <= n; ++i)
 	{
-		int v = i->first;
-		if (!visited[v])
+		if (!visited[i])
 		{
 			ans++;
-			DFS(v);
+			DFS(i);
 			cout << endl;
 		}
 	}
@@ -105,6 +104,6 @@ int main()
     }
 	// int k; cin >> k; g.DFS(k); cout << endl;
 	// cout << g.hasCycle(k) << endl;
-	g.ConnectedComponents();
+	g.ConnectedComponents(n);
 }
 
