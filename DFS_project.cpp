@@ -52,6 +52,7 @@ class Graph
 		void DFS(int v);
 		bool hasCycle(int v);
 		void ConnectedComponents(int n);
+		void Return();
 };
 // Add Edge
 void Graph::addEdge(int v, int w)
@@ -95,6 +96,13 @@ void Graph::ConnectedComponents(int n)
 	}
 	cout << ans << endl;
 }
+// Return
+void Graph::Return()
+{
+	// Return visited bool to false
+	for (auto i = visited.begin(); i != visited.end(); ++i)
+		i->second = false;
+}
 int main()
 {
 	Graph g;
@@ -106,8 +114,9 @@ int main()
         g.addEdge(x,y);
 		g.addEdge(y,x);
     }
-	// int k; cin >> k; g.DFS(k); cout << endl;
-	// cout << g.hasCycle(k) << endl;
+	int k; cin >> k; g.DFS(k); cout << endl;
+	cout << g.hasCycle(k) << endl;
+	g.Return();
 	g.ConnectedComponents(n);
 }
 
