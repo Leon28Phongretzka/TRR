@@ -154,14 +154,19 @@ int main()
 	Graph g;
 	int n,m;
 	cin >> n >> m;
+	// Use adjancency list to store graph
     for(int i=0; i<m; i++)
     {
         int x,y; cin >> x >> y;
         g.addEdge(x,y);
 		g.addEdge(y,x);
     }
+	// DFS
 	int k; cin >> k; g.DFS(k); cout << endl;
+	// Check cycle
 	cout << g.hasCycle(k) << endl;
+	// Connected Components
 	g.Return(); g.ConnectedComponents(n);
+	// Path
 	g.Return(); g.SetParent(); int u,v; cin >> u >> v; g.Path(u,v);
 }
