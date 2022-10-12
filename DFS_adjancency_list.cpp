@@ -94,11 +94,12 @@ void Graph::ConnectedComponents(int n)
 		if (!visited[i])
 		{
 			ans++;
+			cout << "Component " << ans << " : ";
 			DFS(i);
 			cout << endl;
 		}
 	}
-	cout << ans << endl;
+	cout << "Numbers of Connected Components is: " << ans << endl;
 }
 // DFS_path
 void Graph::DFS_path(int u)
@@ -116,6 +117,7 @@ void Graph::DFS_path(int u)
 // Path
 void Graph::Path(int u, int v)
 {
+	int temp=v;
 	memset(parent, 0, sizeof(parent));
 	DFS_path(u);
 	if(!visited[v])
@@ -133,6 +135,7 @@ void Graph::Path(int u, int v)
 		}
 		path.pb(u);
 		reverse(path.begin(), path.end());
+		cout << "The Path between " << u << " and " << temp << " is: ";
 		fora(i, path)
 			cout << i << " ";
 	}
@@ -155,6 +158,7 @@ int main()
 	int n,m;
 	cin >> n >> m;
 	// Use adjancency list to store graph
+	g.Return();
     for(int i=0; i<m; i++)
     {
         int x,y; cin >> x >> y;
@@ -164,7 +168,8 @@ int main()
 	// DFS
 	int k; cin >> k; g.DFS(k); cout << endl;
 	// Check cycle
-	cout << g.hasCycle(k) << endl;
+	if(g.hasCycle(k)) cout << "Cycle" << endl;
+	else cout << "No Cycle" << endl;
 	// Connected Components
 	g.Return(); g.ConnectedComponents(n);
 	// Find path
