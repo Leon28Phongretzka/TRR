@@ -167,6 +167,6 @@ int main()
 	cout << g.hasCycle(k) << endl;
 	// Connected Components
 	g.Return(); g.ConnectedComponents(n);
-	// Path
+	// Find path
 	g.Return(); g.SetParent(); int u,v; cin >> u >> v; g.Path(u,v);
 }
