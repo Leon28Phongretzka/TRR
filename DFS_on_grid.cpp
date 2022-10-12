@@ -12,64 +12,66 @@ typedef long double ld;
 #define sz(s) ((int)(s.size()))
 #define UM uno\nrdered_map
 #define US uno\nrdered_set
-#define forn(i, n) for (int i = 1; i <= int(n); i++)
+#define forn(i, n) for (ll i = 1; i <= ll(n); i++)
 #define fora(i, n) for(auto x:n)
 #define Len 100005
-int n,m;
-ll dx[4] = {0, 0, 1, -1};
-ll dy[4] = {1, -1, 0, 0};
+ll n,m;
+ll dx[4] = {-1,0,0,1};
+ll dy[4] = {0,-1,1,0};
 class Graph 
 {
 	public:
-        vector<ll> adj[1001];
+        char adj[1001][1001];
 		bool visited[1001][1001];
-		map<int, list<int>> adj;
-		int parent[1001];
-		void addEdge(int v, int w);
-		void DFS(int v);
+		void DFS(ll v,ll w);
+        void Solve();
 };
-// add edge
-void Graph::addEdge(int v, int w)
-{
-    adj[v].pb(w);
-}
 // DFS
-void Graph::DFS(int v, int w)
+void Graph::DFS(ll v, ll w)
 {
+    cout << v << " " << w << endl;
     visited[v][w] = true;
     for(ll k=0; k<4; k++)
     {
-        ll i1=i+dx[k];
-        ll i2=j+dy[k];
-        if(i1>=0 && i1<n && i2>=0 && i2<m && !visited[i1][i2] && adj[i1][i2]=='.')
-        {
+        ll i1=v+dx[k];
+        ll i2=w+dy[k];
+        if(i1>=1 && i1<=n && i2>=1 && i2<=m && !visited[i1][i2] && adj[i1][i2]=='x') 
             DFS(i1, i2);
-        }
     }
 }
-// Return
-void Graph::Return()
+// 
+void Graph::Solve()
 {
-	// Return visited bool to false
-	for (auto i = visited.begin(); i != visited.end(); ++i)
-		i->second = false;
+    cin >> n >> m;
+    for(ll i=1; i<=n; i++)
+    {
+        for(ll j=1; j<=m; j++)
+        {
+            cin >> adj[i][j];
+        }
+    }
+    memset(visited, false, sizeof(visited));
+    ll cnt=0;
+    forn(i,n)
+    {
+        forn(j,m)
+        {
+            if( adj[i][j]=='x' && !visited[i][j])
+            {
+                cout << "Component " << ++cnt << ":" << endl;
+                DFS(i,j);
+            }
+        }
+    }
+    cout << endl;
+    cout << "Number of connected components: " << cnt << endl;
 }
 int main()
 {
     // Call graph
 	Graph g;
-	int n,m;
-	cin >> n >> m;
-    // Reset all element in "visited" to false
-    g.Return();
-    // Input
-    for(int i=0; i<m; i++)
-    {
-        int x,y; cin >> x >> y;
-        g.addEdge(x,y);
-		g.addEdge(y,x);
-    }
-	
+    // Solve
+    g.Solve();
 }
 
 
