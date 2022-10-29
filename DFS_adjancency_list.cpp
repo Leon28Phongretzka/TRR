@@ -21,7 +21,7 @@ class Graph
 {
 	public:
 		map<int, bool> visited;
-		map<int, list<int>> adj;
+		map<int, list<int> > adj;
 		int parent[1001];
 		void addEdge(int v, int w);
 		void DFS(int v);
@@ -63,7 +63,7 @@ bool Graph::hasCycle(int v)
 void Graph::ConnectedComponents(int n)
 {
 	int ans=0;
-	for (auto i = 1; i <= n; ++i)
+	for (int i = 1; i <= n; ++i)
 	{
 		if (!visited[i])
 		{
@@ -79,7 +79,7 @@ void Graph::ConnectedComponents(int n)
 void Graph::DFS_path(int u)
 {
 	visited[u] = true;
-	for(auto v : adj[u])
+	for(int v : adj[u])
 	{
 		if(!visited[v])
 		{
@@ -130,10 +130,11 @@ int main()
 {
 	Graph g;
 	int n,m;
+	cout << "Enter the number of verticles and edges: " << endl;
 	cin >> n >> m;
 	// Use adjancency list to store graph
 	g.Return();
-	// Input graph in ajancency list
+	// Input graph use ajancency list
     for(int i=0; i<m; i++)
     {
         int x,y; cin >> x >> y;
@@ -148,5 +149,6 @@ int main()
 	// Connected Components for Graph
 	g.Return(); g.ConnectedComponents(n);
 	// Find path between u and v
-	g.Return(); g.SetParent(); int u,v; cin >> u >> v; g.Path(u,v);
+	g.Return(); g.SetParent(); 
+	int u,v; cin >> u >> v; g.Path(u,v);
 }

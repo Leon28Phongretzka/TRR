@@ -67,15 +67,17 @@ void inp()
     }
     memset(visited, false, sizeof(visited));
 }
+
+// Ngon ngu lap trinh C++
 void dfs(int u)
 {
     cout << u << " ";
-    visited[u] = true;
-    for(int v : adj[u])
+    visited[u] = true; // danh dau dinh u da duoc tham
+    for(int v : adj[u]) // duyet cac dinh ke voi dinh u
     {
-        if(!visited[v])
+        if(!visited[v]) // neu dinh v chua duoc tham
         {
-            dfs(v);
+            dfs(v); // duyet tiep tu dinh v
         }
     }
 }
